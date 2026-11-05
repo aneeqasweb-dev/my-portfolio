@@ -1,36 +1,49 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Aneeqa Pervaiz | Portfolio
 
-## Getting Started
+Personal portfolio built with Next.js 16, React 19, Tailwind CSS 4 and hand-written
+WebGL and CSS animation. There are no animation libraries, so the page stays light.
 
-First, run the development server:
+## Run it
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev      # http://localhost:3000
+npm run build    # production build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Change the content
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Nearly everything visitors read lives in one file: **`content/portfolio.ts`**.
+Edit it and the whole site follows.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| To change | Do this |
+| --- | --- |
+| Email, GitHub, LinkedIn | Edit `profile` |
+| Animated title | Edit `profile.titles` (add as many as you like) |
+| Project links | Set `liveUrl` and `repoUrl`. While `liveUrl` is `null`, the card has no live site button. `hideRepo` removes the GitHub button |
+| Project picture | Save a screenshot in `content/projects/`, import it at the top of `portfolio.ts`, and use it as `image` in place of `art`. Full-page screenshots scroll inside the card on hover |
+| Featured project | Set `featured: true` to show a project full width. `tech` adds logos to any card |
+| Resume | Replace `public/resume.pdf` with your own file |
+| Add a technology, concept or qualification | Add an entry to its list. Logos are in `components/brands.ts` |
 
-## Learn More
+To reorder the sections, move their lines in `app/page.tsx`, update each `index` number, and match `navigation` in `content/portfolio.ts`.
 
-To learn more about Next.js, take a look at the following resources:
+Colours are set as variables at the top of `app/globals.css`, one block per theme. The
+artwork has its own colours: the silk in `components/silk-canvas.tsx`, the 3D symbol in
+`components/code-scene.tsx`, and the laptop and project art in their components.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Deploy
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Vercel works with no setup, including the image shown when your link is shared. On any
+other host, set `metadataBase` to your site's address in `app/layout.tsx`, or the share
+image will point at `localhost`.
 
-## Deploy on Vercel
+## How the motion works
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Silk background:** a small WebGL shader (`components/silk-canvas.tsx`). It pauses when
+  off screen, lowers its resolution on slower machines, and falls back to a plain gradient
+  where WebGL isn't available.
+- **Scroll reveals, card tilt and spotlight:** one component (`components/effects.tsx`)
+  driven by `data-*` attributes, so the sections can stay Server Components.
+- **Everything else:** CSS in `app/globals.css`. All of it respects the visitor's
+  "reduce motion" setting, and all content still shows with JavaScript turned off.

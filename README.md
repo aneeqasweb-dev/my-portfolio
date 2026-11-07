@@ -23,7 +23,7 @@ Edit it and the whole site follows.
 | Project links | Set `liveUrl` and `repoUrl`. While `liveUrl` is `null`, the card has no live site button. `hideRepo` removes the GitHub button |
 | Project picture | Save a screenshot in `content/projects/`, import it at the top of `portfolio.ts`, and use it as `image` in place of `art`. Full-page screenshots scroll inside the card on hover |
 | Featured project | Set `featured: true` to show a project full width. `tech` adds logos to any card |
-| Resume | Replace `public/resume.pdf` with your own file |
+| Resume | Edit `resume/resume.html`, then run `./resume/build.sh` to rebuild `public/resume.pdf` (needs Google Chrome). Or replace `public/resume.pdf` with your own file |
 | Add a technology, concept or qualification | Add an entry to its list. Logos are in `components/brands.ts` |
 
 To reorder the sections, move their lines in `app/page.tsx`, update each `index` number, and match `navigation` in `content/portfolio.ts`.

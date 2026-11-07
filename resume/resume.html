@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Aneeqa Pervaiz | Resume</title>
+<style>
+  @font-face { font-family: "Sora"; font-weight: 100 900; src: url("fonts/Sora.woff2") format("woff2"); }
+  @font-face { font-family: "Geist"; font-weight: 100 900; src: url("fonts/Geist.woff2") format("woff2"); }
+
+  :root {
+    --ink: #242d3a;
+    --body: #37454f;
+    --muted: #4d5c69;
+    --accent: #0b706a;
+    --chip-ink: #0a5c58;
+    --teal: #38afa9;
+    --amber: #a8701f;
+  }
+
+  @page { size: A4; margin: 0; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: #fff; }
+  body {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    font-family: "Geist", sans-serif;
+    color: var(--body);
+    font-size: 13.85px;
+    line-height: 1.54;
+  }
+  a { color: inherit; text-decoration: none; }
+
+  .page { width: 210mm; height: 297mm; padding: 13.2mm 18mm 0; overflow: hidden; }
+
+  h1 {
+    margin: 0;
+    font: 700 36px/1.2 "Sora", sans-serif;
+    letter-spacing: -0.035em;
+    color: var(--ink);
+  }
+  h1 span { color: var(--accent); }
+
+  .role {
+    margin: 6.5px 0 0;
+    font: 600 16.3px/1.3 "Sora", sans-serif;
+    color: var(--accent);
+  }
+
+  .contact { display: flex; gap: 18px; margin-top: 12px; font-size: 12.5px; color: var(--muted); }
+
+  .rule { height: 2px; margin: 17px 0 0; background: linear-gradient(90deg, var(--teal), var(--amber)); }
+
+  section { margin-top: 18.5px; }
+  header + section { margin-top: 20px; }
+  h2 {
+    margin: 0 0 9px;
+    font: 600 12.4px/1.3 "Sora", sans-serif;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  p { margin: 0; }
+
+  h2 + .entry { margin-top: 1px; }
+  .entry + .entry { margin-top: 8px; }
+  .entry-head { display: flex; justify-content: space-between; align-items: baseline; }
+  .entry-head strong { font-size: 14.4px; font-weight: 600; color: var(--ink); }
+  .entry-head time { font-size: 12.5px; color: var(--muted); }
+
+  h2 + .project { margin-top: 3.5px; }
+  .project + .project { margin-top: 8px; }
+  .project h3 { margin: 0; font-size: 13.5px; font-weight: 700; color: var(--ink); }
+  .project h3 a { margin-left: 10px; font-size: 12.5px; font-weight: 400; color: var(--accent); }
+
+  .chips { display: flex; flex-wrap: wrap; gap: 5px 6px; margin: 2px 0 0; padding: 0; list-style: none; }
+  .chips li {
+    padding: 2px 9px;
+    border-radius: 999px;
+    background: rgb(56 175 169 / 0.14);
+    font-size: 12.25px;
+    font-weight: 500;
+    line-height: 19px;
+    color: var(--chip-ink);
+  }
+</style>
+</head>
+<body>
+<main class="page">
+  <header>
+    <h1>Aneeqa <span>Pervaiz</span></h1>
+    <p class="role">Full Stack Developer · Computer Science Student</p>
+    <div class="contact">
+      <a href="mailto:aneeqa.dev@gmail.com">aneeqa.dev@gmail.com</a>
+      <a href="https://github.com/aneeqasweb-dev">github.com/aneeqasweb-dev</a>
+      <a href="https://www.linkedin.com/in/aneeqapervaiz">linkedin.com/in/aneeqapervaiz</a>
+    </div>
+    <div class="rule"></div>
+  </header>
+
+  <section>
+    <h2>About</h2>
+    <p>I’m a Computer Science student with a strong interest in full-stack development. I enjoy turning ideas into scalable and user-friendly web applications, with a focus on clean code and innovative solutions.</p>
+  </section>
+
+  <section>
+    <h2>Education</h2>
+    <div class="entry">
+      <div class="entry-head"><strong>Bachelor of Science in Computer Science</strong><time>2026 – Present</time></div>
+      <p>Virtual University of Pakistan</p>
+    </div>
+    <div class="entry">
+      <div class="entry-head"><strong>Intermediate (Pre-Medical)</strong><time>2023 – 2025</time></div>
+      <p>Punjab Group of Colleges · Grade A+, 83%</p>
+    </div>
+    <div class="entry">
+      <div class="entry-head"><strong>Secondary School Certificate (SSC)</strong><time>2021 – 2023</time></div>
+      <p>Government High School · Grade A+, 91%</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Projects</h2>
+    <div class="project">
+      <h3>Bazm <a href="https://bazm-online-frontend.vercel.app/">bazm-online-frontend.vercel.app</a></h3>
+      <p>A Pakistan-first fashion e-commerce platform with a complete storefront, wishlist, cart and checkout, plus role-based tools for managing products, orders and inventory. Built with TypeScript, Firebase and Cloudinary. Runs as a demo with a sample catalog and test checkout.</p>
+    </div>
+    <div class="project">
+      <h3>MODO Homes <a href="https://modohomes.pk/">modohomes.pk</a></h3>
+      <p>A live e-commerce store for premium bath and kitchen fixtures, delivering across Pakistan, with a separate admin panel for managing products, plus search, wishlist, cash on delivery, order tracking and animated water effects. Built with React, TypeScript, Tailwind CSS and Firebase.</p>
+    </div>
+    <div class="project">
+      <h3>BeatFlow <a href="https://spotify-application-jade.vercel.app/">spotify-application-jade.vercel.app</a></h3>
+      <p>A full-stack music streaming app with listener and artist accounts. Listeners stream, like and save songs to playlists; artists upload songs and release albums. Built with React, Node.js, Express.js and MongoDB, with JWT login, hashed passwords and cloud media storage. Visitors can try it as a guest.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Skills</h2>
+    <ul class="chips">
+      <li>HTML</li><li>CSS</li><li>JavaScript</li><li>TypeScript</li><li>React</li><li>Tailwind CSS</li><li>Node.js</li><li>Express.js</li>
+      <li>REST APIs</li><li>JWT Auth</li><li>Google OAuth</li><li>MongoDB</li><li>PostgreSQL</li><li>Git</li><li>GitHub</li><li>VS Code</li>
+      <li>Vercel</li><li>Claude</li><li>Codex</li><li>WordPress</li><li>Figma</li><li>CRUD</li><li>API Integration</li><li>Debugging</li>
+      <li>Computer Networking</li><li>SEO</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Currently Learning</h2>
+    <ul class="chips">
+      <li>Docker</li><li>Kubernetes</li><li>Generative AI</li><li>DevOps</li>
+    </ul>
+  </section>
+</main>
+</body>
+</html>

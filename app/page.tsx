@@ -4,8 +4,8 @@ import { About } from "@/components/sections/about";
 import { Contact } from "@/components/sections/contact";
 import { Education } from "@/components/sections/education";
 import { Footer } from "@/components/sections/footer";
-import { Growth } from "@/components/sections/growth";
 import { Hero } from "@/components/sections/hero";
+import { Learning } from "@/components/sections/learning";
 import { Projects } from "@/components/sections/projects";
 import { Technologies } from "@/components/sections/technologies";
 import { profile } from "@/content/portfolio";
@@ -37,8 +37,8 @@ export default function Home() {
         <About index="01" />
         <Technologies index="02" />
         <Projects index="03" />
-        <Growth index="04" />
-        <Education index="05" />
+        <Education index="04" />
+        <Learning index="05" />
         <Contact index="06" />
       </main>
       <Footer />

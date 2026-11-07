@@ -5,6 +5,7 @@
 import type { StaticImageData } from "next/image";
 import type { BrandName } from "@/components/brands";
 import bazmScreenshot from "./projects/bazm.webp";
+import beatflowScreenshot from "./projects/beatflow.webp";
 import modoHomesScreenshot from "./projects/modo-homes.webp";
 
 const githubHandle = "aneeqasweb-dev";
@@ -42,11 +43,43 @@ export const about = {
   // `lead` is emphasised at the start of the paragraph.
   lead: "I’m Aneeqa Pervaiz,",
   body: "a Computer Science student with a strong interest in full-stack development. I enjoy turning ideas into scalable and user-friendly web applications.",
+  // The second paragraph: what you have built.
+  story:
+    "I’ve built a live e-commerce store with its own admin panel, a fashion storefront with role-based management tools, and a full-stack music streaming app. I work across the stack, from React and TypeScript interfaces to Node.js, Express and MongoDB on the server.",
+  // The glass card on the laptop.
+  studying: {
+    label: "Currently studying",
+    title: "BS Computer Science",
+    detail: "Virtual University of Pakistan",
+  },
+  // The logos on the second glass card.
+  coreStack: [
+    { name: "React", brand: "react" },
+    { name: "TypeScript", brand: "typescript" },
+    { name: "Node.js", brand: "nodejs" },
+    { name: "MongoDB", brand: "mongodb" },
+  ],
   traits: [
-    { label: "Clean Code", icon: "code" },
-    { label: "Problem Solver", icon: "puzzle" },
-    { label: "Quick Learner", icon: "bolt" },
-    { label: "Team Player", icon: "users" },
+    {
+      label: "Clean Code",
+      icon: "code",
+      text: "Readable, well-structured code that stays easy to change as a project grows.",
+    },
+    {
+      label: "Problem Solver",
+      icon: "puzzle",
+      text: "I break complex features into clear steps and debug them methodically.",
+    },
+    {
+      label: "Quick Learner",
+      icon: "bolt",
+      text: "Right now I’m learning Docker, Kubernetes and Generative AI.",
+    },
+    {
+      label: "Team Player",
+      icon: "users",
+      text: "I communicate clearly, share progress early and welcome feedback.",
+    },
   ],
 } as const;
 
@@ -119,17 +152,17 @@ const projectItems: Project[] = [
   {
     name: "BeatFlow",
     description:
-      "A music platform backend with separate listener and artist accounts. Artists upload tracks and build albums, listeners browse them, and it all runs through a REST API with JWT login, hashed passwords, cloud media storage and automated tests.",
-    art: "beatflow",
-    liveUrl: null,
+      "A full-stack music streaming app with listener and artist accounts. Listeners stream, like and save songs to playlists, with a full player and queue; artists upload songs and release albums. Runs on a REST API with JWT login, hashed passwords, cloud media storage and automated tests. Visitors can try it as a guest.",
+    image: beatflowScreenshot,
+    liveUrl: "https://spotify-application-jade.vercel.app",
     repoUrl: "https://github.com/aneeqasweb-dev/Spotify-Application",
     badge: "Music platform",
     featured: true,
     tech: [
+      { name: "React", brand: "react" },
       { name: "Node.js", brand: "nodejs" },
       { name: "Express.js", brand: "express" },
       { name: "MongoDB", brand: "mongodb" },
-      { name: "JWT Auth" },
     ],
   },
 ];
@@ -203,7 +236,17 @@ export const technologies = {
   groups: technologyGroups,
 };
 
-const growthGroups: SkillGroup[] = [
+// The figures in About Me. They're counted from the lists above, so they update themselves.
+export const aboutStats = [
+  { value: projectItems.length, label: "Projects built" },
+  { value: projectItems.filter((project) => project.liveUrl).length, label: "Live websites" },
+  {
+    value: technologyGroups.reduce((total, group) => total + group.items.length, 0),
+    label: "Technologies & tools",
+  },
+];
+
+const learningGroups: SkillGroup[] = [
   {
     label: "Core Concepts",
     icon: "lightbulb",
@@ -227,40 +270,55 @@ const growthGroups: SkillGroup[] = [
   },
 ];
 
-export const growth = {
-  title: "Knowledge &",
-  accent: "Growth",
-  description: "The concepts I build on, and what I’m learning next.",
-  groups: growthGroups,
+export const learning = {
+  title: "Currently",
+  accent: "Exploring",
+  description: "The concepts I build on, and the technologies I’m learning next.",
+  groups: learningGroups,
 };
 
 export const education = {
   title: "My",
-  accent: "Education",
-  description: "From school to university.",
+  accent: "Academic Background",
+  description: "My path from school to university, most recent first.",
   items: [
     {
+      level: "University",
+      icon: "cap",
       role: "Bachelor of Science in Computer Science",
       detail: "Virtual University of Pakistan",
       period: "2026 – Present",
+      status: "In progress",
     },
     {
+      level: "College",
+      icon: "book",
       role: "Intermediate (Pre-Medical)",
       detail: "Punjab Group of Colleges",
       period: "2023 – 2025",
-      grade: "Grade A+ · 83%",
+      grade: "A+",
+      score: "83%",
     },
     {
+      level: "School",
+      icon: "school",
       role: "Secondary School Certificate (SSC)",
       detail: "Government High School",
       period: "2021 – 2023",
-      grade: "Grade A+ · 91%",
+      grade: "A+",
+      score: "91%",
     },
   ] as {
+    /** Small label above the qualification. */
+    level: string;
+    icon: "cap" | "book" | "school";
     role: string;
     detail: string;
     period: string;
+    /** Shown with a pulsing dot while the qualification is still under way. */
+    status?: string;
     grade?: string;
+    score?: string;
   }[],
 };
 
@@ -277,7 +335,7 @@ export const navigation = [
   { id: "about", label: "About" },
   { id: "technologies", label: "Technologies" },
   { id: "projects", label: "Projects" },
-  { id: "growth", label: "Growth" },
   { id: "education", label: "Education" },
+  { id: "learning", label: "Learning" },
   { id: "contact", label: "Contact" },
 ];

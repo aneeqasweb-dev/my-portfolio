@@ -3,26 +3,26 @@
 @custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 
 /* ── Design tokens ─────────────────────────────────────────────────────────── */
-/* Deep forest green (dark) and soft sage (light), chosen by the user to suit the dark yellow. */
+/* Dark: the background from the user's reference screenshot. Light: the warm off-white from their screenshots. */
 :root,
 [data-theme="dark"] {
   color-scheme: dark;
 
-  --bg: #0f2620;
+  --bg: #111725;
   --teal: #38afa9;
   --amber: #a8701f;
-  --text: #dbe5df;
-  --muted: #9fb3aa;
+  --text: #d3d9dc;
+  --muted: #9ea5af;
 
   /* Built from those colours */
-  --band: #122b24;
-  --card: #173530;
+  --band: #131a28;
+  --card: #1f2e3b;
   --bg-raised: var(--card);
-  --surface: rgb(219 229 223 / 0.035);
-  --surface-2: rgb(219 229 223 / 0.05);
-  --surface-3: rgb(219 229 223 / 0.09);
-  --line: rgb(219 229 223 / 0.1);
-  --line-strong: rgb(219 229 223 / 0.24);
+  --surface: rgb(211 217 220 / 0.035);
+  --surface-2: rgb(211 217 220 / 0.05);
+  --surface-3: rgb(211 217 220 / 0.09);
+  --line: rgb(211 217 220 / 0.1);
+  --line-strong: rgb(211 217 220 / 0.24);
   --subtle: var(--muted);
   --accent: var(--teal);
   --accent-soft: var(--teal);
@@ -34,37 +34,37 @@
   --amber-wash: rgb(168 112 31 / 0.1);
   --on-accent: #0b0f14;
   --glow: rgb(168 112 31 / 0.28);
-  --shadow: 0 24px 48px -32px rgb(3 12 9 / 0.75);
+  --shadow: 0 24px 48px -32px rgb(6 14 20 / 0.75);
   --tech-bg: var(--band);
-  --tech-rule: rgb(219 229 223 / 0.025);
+  --tech-rule: rgb(211 217 220 / 0.025);
   --tech-wash: 0.1;
   --tech-tint: 0.14;
   --tech-card-line: var(--line);
-  --tech-card-shadow: 0 14px 30px -22px rgb(3 12 9 / 0.7);
+  --tech-card-shadow: 0 14px 30px -22px rgb(6 14 20 / 0.7);
   --tech-tile: rgb(168 112 31 / 0.12);
   --tech-tile-line: rgb(168 112 31 / 0.26);
-  --tech-chip: rgb(219 229 223 / 0.07);
-  --tech-chip-line: rgb(219 229 223 / 0.09);
-  --nav-bg: rgb(15 38 32 / 0.86);
-  --art-ring: rgb(219 229 223 / 0.08);
-  --depth-near: #1d7a68;
-  --depth-far: #0b2a22;
+  --tech-chip: rgb(211 217 220 / 0.07);
+  --tech-chip-line: rgb(211 217 220 / 0.09);
+  --nav-bg: rgb(17 23 37 / 0.84);
+  --art-ring: rgb(211 217 220 / 0.08);
+  --depth-near: #1f7f7a;
+  --depth-far: #0f2c36;
 }
 
 /* Small text uses deeper teal and yellow here, because the exact colours are too pale
    to read at that size on a light background. */
 [data-theme="light"] {
   color-scheme: light;
-  --bg: #e3ebe5;
-  --text: #1f2b27;
-  --muted: #57615c;
-  --band: #edf2ee;
+  --bg: #f3f2f1;
+  --text: #242d3a;
+  --muted: #666d7b;
+  --band: #fafaf9;
   --card: #ffffff;
   --surface: rgb(255 255 255 / 0.66);
   --surface-2: rgb(255 255 255 / 0.9);
   --surface-3: #ffffff;
-  --line: rgb(31 43 39 / 0.11);
-  --line-strong: rgb(31 43 39 / 0.26);
+  --line: rgb(36 45 58 / 0.11);
+  --line-strong: rgb(36 45 58 / 0.26);
   --accent: #0b706a;
   --accent-ink: #0b706a;
   --amber-ink: #8f5706;
@@ -72,19 +72,19 @@
   --accent-wash: rgb(56 175 169 / 0.12);
   --amber-wash: rgb(168 112 31 / 0.16);
   --glow: rgb(168 112 31 / 0.34);
-  --shadow: 0 22px 40px -32px rgb(31 50 42 / 0.3);
+  --shadow: 0 22px 40px -32px rgb(36 45 58 / 0.3);
   --tech-bg: var(--bg);
-  --tech-rule: rgb(31 43 39 / 0.03);
+  --tech-rule: rgb(36 45 58 / 0.028);
   --tech-wash: 0.12;
   --tech-tint: 0.16;
-  --tech-card-line: rgb(31 43 39 / 0.07);
-  --tech-card-shadow: 0 10px 24px -18px rgb(31 50 42 / 0.22);
+  --tech-card-line: rgb(36 45 58 / 0.07);
+  --tech-card-shadow: 0 10px 24px -18px rgb(36 45 58 / 0.22);
   --tech-tile: #fbf5ed;
   --tech-tile-line: #f4e5d0;
   --tech-chip: #efefef;
   --tech-chip-line: #e7e7e7;
-  --nav-bg: rgb(227 235 229 / 0.86);
-  --art-ring: rgb(31 43 39 / 0.1);
+  --nav-bg: rgb(250 250 249 / 0.84);
+  --art-ring: rgb(36 45 58 / 0.1);
   --depth-near: #1f9a93;
   --depth-far: #0e5f5a;
 }
@@ -201,6 +201,11 @@
     max-width: 66rem;
     margin-inline: auto;
     padding-inline: clamp(1rem, 3.2vw, 2.5rem);
+  }
+
+  /* The original page width, kept for the Projects section. */
+  .shell--wide {
+    max-width: 80rem;
   }
 
   .skip-link {
@@ -452,7 +457,7 @@
     position: relative;
     z-index: 1;
     display: block;
-    padding: 0.55rem 0.95rem;
+    padding: 0.55rem 0.75rem;
     border-radius: 999px;
     color: var(--muted);
     font-size: 0.88rem;
@@ -639,7 +644,7 @@
 
   .hero-name {
     display: block;
-    font-size: clamp(3.25rem, 6.1vw, 5.35rem);
+    font-size: clamp(3.25rem, 6.1vw, 4.6rem);
     font-weight: 700;
     letter-spacing: -0.045em;
     line-height: 1.04;
@@ -925,32 +930,255 @@
     }
   }
 
-  .trait {
-    display: flex;
-    align-items: center;
-    gap: 0.8rem;
-    padding: 0.55rem 1rem 0.55rem 0.55rem;
-    border-radius: 999px;
-    font-size: 0.92rem;
-    font-weight: 500;
+  .about-lead {
+    margin-top: 1.4rem;
+    max-width: 54ch;
+    color: var(--text);
+    font-size: clamp(1.1rem, 1.45vw, 1.22rem);
+    line-height: 1.7;
   }
 
-  .trait-icon {
+  .about-lead strong {
+    font-weight: 600;
+    color: var(--amber-ink);
+  }
+
+  .about-story {
+    margin-top: 1rem;
+    max-width: 56ch;
+    color: var(--muted);
+    font-size: 1rem;
+    line-height: 1.75;
+  }
+
+  /* Three figures in one strip, divided by hairlines. */
+  .about-stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    margin-top: 1.75rem;
+    overflow: hidden;
+    border-radius: var(--radius-sm);
+    background: var(--card);
+    box-shadow: inset 0 0 0 1px var(--line), var(--shadow);
+  }
+
+  .about-stat {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: flex-end;
+    gap: 0.35rem;
+    padding: 1.1rem 1.25rem;
+  }
+
+  .about-stat + .about-stat {
+    box-shadow: inset 1px 0 0 var(--line);
+  }
+
+  .about-stat dd {
+    color: var(--heading-accent);
+    font-size: clamp(1.9rem, 3vw, 2.4rem);
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.03em;
+    line-height: 1;
+  }
+
+  .about-stat dt {
+    color: var(--muted);
+    font-size: 0.84rem;
+    line-height: 1.35;
+  }
+
+  /* The laptop with two glass cards floating over it. */
+  .about-visual {
+    position: relative;
     display: grid;
     place-items: center;
-    flex: none;
-    width: 2.25rem;
-    height: 2.25rem;
-    border-radius: 50%;
-    background: var(--accent-wash);
-    color: var(--accent-ink);
-    transition: transform 0.5s var(--ease-out), background-color 0.3s ease;
+    min-height: 26rem;
   }
 
-  .trait[data-hover] .trait-icon {
-    transform: rotate(-10deg) scale(1.12);
+  /* Room above the lid for the stack card, so it never covers the code on screen. */
+  .about-visual > .laptop {
+    margin-top: 3.5rem;
+  }
+
+  .about-float {
+    position: absolute;
+    z-index: 2;
+  }
+
+  .about-float-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    padding: 0.85rem 1.05rem;
+    border-radius: 1rem;
+    background: color-mix(in srgb, var(--card) 80%, transparent);
+    box-shadow: inset 0 0 0 1px var(--line-strong), var(--shadow);
+    backdrop-filter: blur(14px) saturate(150%);
+    -webkit-backdrop-filter: blur(14px) saturate(150%);
+    animation: float-y 7s ease-in-out infinite;
+  }
+
+  .about-float--study {
+    bottom: 0;
+    left: 0;
+  }
+
+  .about-float--stack {
+    top: 0;
+    right: 0.5rem;
+  }
+
+  .about-float--stack .about-float-inner {
+    animation-delay: -3.5s;
+  }
+
+  .about-float-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--accent-ink);
+    font-family: var(--font-mono), monospace;
+    font-size: 0.66rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .about-float-label i {
+    position: relative;
+    width: 0.45rem;
+    height: 0.45rem;
+    border-radius: 50%;
+    background: var(--teal);
+  }
+
+  .about-float-label i::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: var(--teal);
+    animation: pulse-dot 2.2s ease-out infinite;
+  }
+
+  .about-float-title {
+    margin-top: 0.15rem;
+    font-size: 0.98rem;
+    font-weight: 600;
+  }
+
+  .about-float-detail {
+    color: var(--muted);
+    font-size: 0.8rem;
+  }
+
+  .about-logos {
+    display: flex;
+    gap: 0.45rem;
+    margin-top: 0.35rem;
+  }
+
+  .about-logos li {
+    display: grid;
+    place-items: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 0.65rem;
+    background: var(--tech-chip);
+    box-shadow: inset 0 0 0 1px var(--tech-chip-line);
+  }
+
+  /* Phones: the glass cards sit under the laptop instead of over it. */
+  @media (max-width: 39.99rem) {
+    .about-visual {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.75rem;
+      min-height: 0;
+    }
+
+    .about-visual > .laptop {
+      grid-column: 1 / -1;
+      margin-top: 0;
+    }
+
+    .about-float {
+      position: static;
+      align-self: stretch;
+    }
+
+    .about-float-inner {
+      height: 100%;
+      animation: none;
+    }
+
+    .about-logos li {
+      width: 2rem;
+      height: 2rem;
+    }
+  }
+
+  /* The four qualities, as cards. */
+  .about-traits {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1rem;
+    margin-top: 2.5rem;
+  }
+
+  @media (min-width: 40rem) {
+    .about-traits {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 64rem) {
+    .about-traits {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1.25rem;
+    }
+  }
+
+  .about-trait {
+    padding: 1.35rem 1.35rem 1.45rem;
+    border-radius: 1.3rem;
+    box-shadow: inset 0 0 0 1px var(--tech-card-line), var(--tech-card-shadow);
+  }
+
+  .about-trait-icon {
+    display: grid;
+    place-items: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    margin-bottom: 1rem;
+    border: 1px solid var(--tech-tile-line);
+    border-radius: 0.8rem;
+    background: var(--tech-tile);
+    color: var(--amber);
+    transition:
+      transform 0.5s var(--ease-out),
+      background-color 0.3s ease,
+      color 0.3s ease;
+  }
+
+  .about-trait[data-hover] .about-trait-icon {
+    transform: rotate(-8deg) scale(1.08);
     background: var(--amber);
     color: var(--on-accent);
+  }
+
+  .about-trait-title {
+    font-size: 1.06rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+
+  .about-trait-text {
+    margin-top: 0.4rem;
+    color: var(--muted);
+    font-size: 0.9rem;
+    line-height: 1.6;
   }
 
   /* Laptop: the lid opens when it scrolls into view. */
@@ -1433,7 +1661,7 @@
     opacity: 0.8;
   }
 
-  /* ── Skill cards (Technologies and Knowledge & Growth) ────────────────────── */
+  /* ── Skill cards (Technologies and Currently Exploring) ───────────────────── */
   .tech-section {
     background-color: var(--tech-bg);
     background-image:
@@ -1578,7 +1806,7 @@
     color: var(--brand-light);
   }
 
-  /* ── Education: three cards, laid out like the other sections ─────────────── */
+  /* ── Academic Background: three cards on the Technologies band ───────────── */
   .edu-grid {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
@@ -1602,19 +1830,7 @@
     align-items: center;
     justify-content: space-between;
     gap: 0.75rem;
-    margin-bottom: 1.1rem;
-  }
-
-  .edu-school {
-    margin-top: 0.35rem;
-    color: var(--muted);
-    font-size: 0.95rem;
-    line-height: 1.5;
-  }
-
-  .edu-grade {
-    align-self: flex-start;
-    margin-top: 1rem;
+    margin-bottom: 1.15rem;
   }
 
   .edu-period {
@@ -1626,6 +1842,89 @@
     font-size: 0.8rem;
     font-weight: 500;
     white-space: nowrap;
+  }
+
+  .edu-level {
+    margin-bottom: 0.35rem;
+    color: var(--accent-ink);
+    font-family: var(--font-mono), monospace;
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .edu-title {
+    line-height: 1.35;
+  }
+
+  .edu-school {
+    margin-top: 0.35rem;
+    margin-bottom: 1.25rem;
+    color: var(--muted);
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  /* Pinned to the bottom so the three footers line up. */
+  .edu-foot {
+    display: flex;
+    align-items: center;
+    min-height: 4rem;
+    margin-top: auto;
+    padding-top: 1rem;
+    border-top: 1px solid var(--line);
+  }
+
+  .edu-stats {
+    display: flex;
+    gap: 2rem;
+  }
+
+  .edu-stats dt {
+    color: var(--muted);
+    font-family: var(--font-mono), monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .edu-stats dd {
+    margin-top: 0.1rem;
+    color: var(--amber-ink);
+    font-size: 1.3rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+  }
+
+  .edu-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: var(--accent-ink);
+    font-family: var(--font-mono), monospace;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .edu-status i {
+    position: relative;
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background: var(--teal);
+  }
+
+  .edu-status i::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: var(--teal);
+    animation: pulse-dot 2.2s ease-out infinite;
   }
 
   /* ── Contact ─────────────────────────────────────────────────────────────── */

@@ -7,7 +7,8 @@ import { reveal, SectionHeading } from "../section-heading";
 export function Projects({ index }: { index: string }) {
   return (
     <section id="projects" className="page-section">
-      <div className="shell">
+      {/* Wider than the other sections: the stacked project cards keep their original size. */}
+      <div className="shell shell--wide">
         <div className="sec-row">
           <SectionHeading
             index={index}

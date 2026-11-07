@@ -104,12 +104,12 @@ void footer(vec2 uv, float t) {
 }
 
 void main() {
-  // Greens and yellow from the palette: each pair is the dark theme, then the light theme.
-  bodyColor = mix(vec3(0.06, 0.21, 0.16), vec3(0.56, 0.72, 0.62), uLight);
-  glowColor = mix(vec3(0.13, 0.46, 0.36), vec3(0.20, 0.58, 0.48), uLight);
+  // Teal and yellow from the palette: each pair is the dark theme, then the light theme.
+  bodyColor = mix(vec3(0.07, 0.24, 0.27), vec3(0.62, 0.84, 0.82), uLight);
+  glowColor = mix(vec3(0.17, 0.54, 0.52), vec3(0.22, 0.69, 0.66), uLight);
   warmColor = mix(vec3(0.52, 0.35, 0.11), vec3(0.66, 0.44, 0.12), uLight);
-  threadColor = mix(vec3(0.25, 0.55, 0.45), vec3(0.10, 0.44, 0.36), uLight);
-  edgeColor = mix(vec3(0.40, 0.70, 0.58), vec3(0.04, 0.38, 0.31), uLight);
+  threadColor = mix(vec3(0.30, 0.62, 0.60), vec3(0.10, 0.50, 0.47), uLight);
+  edgeColor = mix(vec3(0.55, 0.82, 0.79), vec3(0.04, 0.44, 0.42), uLight);
   warmEdge = mix(vec3(0.66, 0.44, 0.12), vec3(0.62, 0.40, 0.08), uLight);
 
   vec2 uv = gl_FragCoord.xy / uRes;

@@ -119,7 +119,7 @@ export function Nav() {
       <div className="shell flex h-[4.5rem] items-center justify-between gap-4">
         <a href="#home" className="flex min-h-11 items-center gap-2.5 rounded-lg font-display font-semibold tracking-tight" aria-label={`${profile.fullName}, back to top`}>
           <Logo />
-          <span className="text-[0.98rem]">{profile.fullName}</span>
+          <span className="whitespace-nowrap text-[0.98rem]">{profile.fullName}</span>
         </a>
 
         <nav aria-label="Primary" className="hidden xl:block">

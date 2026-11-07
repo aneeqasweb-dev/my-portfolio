@@ -91,6 +91,20 @@ export const GraduationCap = (p: IconProps) => (
     <path d="M6 11.7v4.8c0 1.2 2.7 3 6 3s6-1.8 6-3v-4.8M22 9.5V15" />
   </Stroke>
 );
+export const BookOpen = (p: IconProps) => (
+  <Stroke {...p}>
+    <path d="M12 7v14" />
+    <path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3Z" />
+  </Stroke>
+);
+export const School = (p: IconProps) => (
+  <Stroke {...p}>
+    <path d="M14 22v-4a2 2 0 1 0-4 0v4" />
+    <path d="m18 10 3.45 1.72a1 1 0 0 1 .55.9V20a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-7.38a1 1 0 0 1 .55-.9L6 10" />
+    <path d="M18 5v17M6 5v17M4 6l7.1-3.55a2 2 0 0 1 1.8 0L20 6" />
+    <circle cx="12" cy="9" r="2" />
+  </Stroke>
+);
 export const Code = (p: IconProps) => (
   <Stroke {...p}>
     <path d="m8 7-5 5 5 5M16 7l5 5-5 5M13.5 4l-3 16" />

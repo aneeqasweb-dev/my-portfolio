@@ -11,8 +11,9 @@ function subscribe(onChange: () => void) {
   return () => observer.disconnect();
 }
 
-const readTheme = () => (document.documentElement.dataset.theme === "light" ? "light" : "dark");
-const serverTheme = () => "dark" as const;
+// Light is the default; dark applies only when chosen.
+const readTheme = () => (document.documentElement.dataset.theme === "dark" ? "dark" : "light");
+const serverTheme = () => "light" as const;
 
 export function ThemeToggle() {
   const theme = useSyncExternalStore(subscribe, readTheme, serverTheme);

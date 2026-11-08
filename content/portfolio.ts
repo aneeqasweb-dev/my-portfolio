@@ -323,10 +323,13 @@ export const education = {
 };
 
 export const contact = {
-  title: "Contact",
-  accent: "Me",
+  badge: "Get In Touch",
+  // `title` shows in teal and `accent` in amber.
+  title: "Let’s Build Something",
+  accent: "Together",
   description:
-    "Let’s discuss opportunities, collaborations or just connect!",
+    "Have a project in mind or just want to connect? I’m always open to discussing new opportunities and ideas.",
+  infoTitle: "Contact Information",
 };
 
 // `id` matches each section's anchor. Reorder here only if you also reorder app/page.tsx.

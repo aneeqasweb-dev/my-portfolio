@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono, Sora } from "next/font/google";
+import { Geist, Geist_Mono, Playfair_Display, Sora } from "next/font/google";
 import { profile } from "@/content/portfolio";
 import "./globals.css";
 
@@ -19,6 +19,12 @@ const sora = Sora({
   weight: ["500", "600", "700"],
 });
 
+// The serif used for the name in the hero.
+const playfair = Playfair_Display({
+  variable: "--font-playfair",
+  subsets: ["latin"],
+});
+
 const title = `${profile.fullName} | ${profile.titles[0]}`;
 
 export const metadata: Metadata = {
@@ -29,7 +35,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#111725",
+  themeColor: "#eaeaea",
 };
 
 // Runs before first paint: applies the saved theme and marks that JS is available,
@@ -42,9 +48,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      data-theme="dark"
+      data-theme="light"
       data-scroll-behavior="smooth"
-      className={`${geistSans.variable} ${geistMono.variable} ${sora.variable}`}
+      className={`${geistSans.variable} ${geistMono.variable} ${sora.variable} ${playfair.variable}`}
       suppressHydrationWarning
     >
       <head>

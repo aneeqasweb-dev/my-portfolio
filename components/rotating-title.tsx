@@ -2,34 +2,72 @@
 
 import { useEffect, useState } from "react";
 
-const HOLD_MS = 3600;
+const START_MS = 900; // waits for the hero to finish fading in
+const TYPE_MS = 85;
+const DELETE_MS = 45;
+const HOLD_MS = 1900;
+const GAP_MS = 450;
+const SWAP_MS = 3600; // reduced motion: whole titles swap at this pace
 
+/** Types each title out letter by letter, holds it, deletes it, then types the next. */
 export function RotatingTitle({ titles }: { titles: string[] }) {
-  // `previous` lets only the outgoing title play its exit animation.
-  const [{ current, previous }, setIndex] = useState({ current: 0, previous: -1 });
+  const [{ index, length, typing }, setShown] = useState({ index: 0, length: 0, typing: false });
 
   useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const timer = setInterval(() => {
-      setIndex(({ current }) => ({ current: (current + 1) % titles.length, previous: current }));
-    }, HOLD_MS);
-    return () => clearInterval(timer);
-  }, [titles.length]);
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let current = 0;
+    let letters = 0;
+    let deleting = false;
+    let timer = 0;
+
+    const show = (isTyping: boolean) => setShown({ index: current, length: letters, typing: isTyping });
+    const next = (delay: number) => {
+      timer = window.setTimeout(step, delay);
+    };
+
+    function step() {
+      const full = titles[current].length;
+
+      if (reduceMotion) {
+        letters = full;
+        show(false);
+        current = (current + 1) % titles.length;
+        return next(SWAP_MS);
+      }
+
+      if (!deleting && letters < full) {
+        letters += 1;
+        show(true);
+        next(TYPE_MS);
+      } else if (!deleting) {
+        deleting = true;
+        show(false);
+        next(HOLD_MS);
+      } else if (letters > 0) {
+        letters -= 1;
+        show(true);
+        next(DELETE_MS);
+      } else {
+        deleting = false;
+        current = (current + 1) % titles.length;
+        show(false);
+        next(GAP_MS);
+      }
+    }
+
+    next(reduceMotion ? 0 : START_MS);
+    return () => window.clearTimeout(timer);
+  }, [titles]);
 
   return (
-    <p className="rt">
-      <span className="rt-mark" aria-hidden="true" />
+    <p className="rt" data-typing={typing ? "" : undefined}>
       <span className="sr-only">{titles.join(" and ")}</span>
-      <span className="rt-stack" aria-hidden="true">
-        {titles.map((title, index) => (
-          <span
-            key={title}
-            className="rt-line"
-            data-state={index === current ? "in" : index === previous ? "out" : "idle"}
-          >
-            {title}
-          </span>
-        ))}
+      <span className="rt-typed" aria-hidden="true">
+        {titles[index].slice(0, length)}
+        <span className="rt-caret" />
+      </span>
+      <span className="rt-static" aria-hidden="true">
+        {titles[0]}
       </span>
     </p>
   );

@@ -39,7 +39,7 @@ export default function Home() {
         <Projects index="03" />
         <Education index="04" />
         <Learning index="05" />
-        <Contact index="06" />
+        <Contact />
       </main>
       <Footer />
       <Effects />

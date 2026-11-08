@@ -49,16 +49,24 @@
   --art-ring: rgb(211 217 220 / 0.08);
   --depth-near: #1f7f7a;
   --depth-far: #0f2c36;
+  /* The typed title and the gold of the name, left to right. */
+  --type-ink: var(--teal);
+  --name-a: #d9ad5c;
+  --name-b: #cf9a3a;
+  --name-c: #c48a1f;
+  /* Background glows are warm (never teal), so the page has no green cast. */
+  --wash: 168 112 31;
 }
 
 /* Small text uses deeper teal and yellow here, because the exact colours are too pale
    to read at that size on a light background. */
 [data-theme="light"] {
   color-scheme: light;
-  --bg: #f3f2f1;
+  /* The soft cream-grey from the user's reference screenshot. */
+  --bg: #eaeaea;
   --text: #242d3a;
-  --muted: #666d7b;
-  --band: #fafaf9;
+  --muted: #5f6573;
+  --band: #f1f0ee;
   --card: #ffffff;
   --surface: rgb(255 255 255 / 0.66);
   --surface-2: rgb(255 255 255 / 0.9);
@@ -83,10 +91,15 @@
   --tech-tile-line: #f4e5d0;
   --tech-chip: #efefef;
   --tech-chip-line: #e7e7e7;
-  --nav-bg: rgb(250 250 249 / 0.84);
+  --nav-bg: rgb(234 234 234 / 0.86);
   --art-ring: rgb(36 45 58 / 0.1);
   --depth-near: #1f9a93;
   --depth-far: #0e5f5a;
+  --type-ink: #418279;
+  --name-a: #aa842c;
+  --name-b: #b0801a;
+  --name-c: #b57c08;
+  --wash: 168 112 31;
 }
 
 @theme inline {
@@ -144,8 +157,8 @@
     z-index: -1;
     pointer-events: none;
     background:
-      radial-gradient(44rem 30rem at 0% 0%, rgb(168 112 31 / 0.08), transparent 70%),
-      radial-gradient(60rem 44rem at 100% 40%, rgb(56 175 169 / 0.05), transparent 70%);
+      radial-gradient(44rem 30rem at 0% 0%, rgb(var(--wash) / 0.07), transparent 70%),
+      radial-gradient(60rem 44rem at 100% 40%, rgb(var(--wash) / 0.04), transparent 70%);
   }
 
   body::after {
@@ -574,8 +587,8 @@
     overflow: hidden;
     pointer-events: none;
     background:
-      radial-gradient(46rem 22rem at 86% 34%, rgb(56 175 169 / 0.14), transparent 70%),
-      radial-gradient(30rem 16rem at 58% 80%, rgb(168 112 31 / 0.05), transparent 70%);
+      radial-gradient(46rem 22rem at 86% 34%, rgb(var(--wash) / 0.08), transparent 70%),
+      radial-gradient(30rem 16rem at 58% 80%, rgb(var(--wash) / 0.05), transparent 70%);
   }
 
   .silk canvas {
@@ -592,7 +605,7 @@
   }
 
   .silk--footer {
-    background: radial-gradient(40rem 12rem at 50% 100%, rgb(56 175 169 / 0.12), transparent 70%);
+    background: radial-gradient(40rem 12rem at 50% 100%, rgb(var(--wash) / 0.1), transparent 70%);
   }
 
   /* ── Hero ────────────────────────────────────────────────────────────────── */
@@ -634,33 +647,47 @@
     animation-delay: calc(var(--d, 0) * 70ms + 60ms);
   }
 
+  /* The greeting and name use Playfair Display, a high-contrast serif. */
   .hero-greet {
     display: block;
-    font-size: clamp(1.75rem, 3.4vw, 2.75rem);
-    font-weight: 500;
-    letter-spacing: -0.02em;
+    font-family: var(--font-playfair), Georgia, serif;
+    font-size: clamp(1.9rem, 3.6vw, 2.9rem);
+    font-weight: 700;
+    letter-spacing: -0.01em;
     line-height: 1.15;
   }
 
   .hero-name {
     display: block;
-    font-size: clamp(3.25rem, 6.1vw, 4.6rem);
+    font-family: var(--font-playfair), Georgia, serif;
+    font-size: clamp(3.4rem, 6.6vw, 5rem);
     font-weight: 700;
-    letter-spacing: -0.045em;
+    letter-spacing: -0.015em;
     line-height: 1.04;
-    color: var(--heading-accent);
+    color: var(--name-b);
   }
 
+  /* Clipped so each word rises from below; the padding keeps descenders (the q) visible. */
   .hero-word {
     display: inline-block;
-    padding-bottom: 0.14em;
-    margin-bottom: -0.14em;
+    padding-bottom: 0.24em;
+    margin-bottom: -0.24em;
     overflow: clip;
     vertical-align: top;
   }
 
+  /* Gold that deepens from left to right across the whole name. */
   .hero-word > span {
     display: inline-block;
+    padding-right: 0.04em;
+    background: linear-gradient(90deg, var(--name-a), var(--name-b));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .hero-word:last-child > span {
+    background-image: linear-gradient(90deg, var(--name-b), var(--name-c));
   }
 
   html[data-fx] .hero-word > span {
@@ -668,45 +695,45 @@
     animation-delay: calc(var(--d, 0) * 110ms + 120ms);
   }
 
-  /* Animated title: letters rise in one by one, then lift away. */
+  /* Animated title: typed out letter by letter, then deleted, with a blinking cursor. */
   .rt {
     display: flex;
     align-items: center;
-    gap: 0.85rem;
-    font-family: var(--font-display), sans-serif;
-    font-size: clamp(1.28rem, 2.6vw, 2.15rem);
-    font-weight: 600;
-    letter-spacing: -0.02em;
-    line-height: 1.2;
+    min-height: 1.4em;
+    color: var(--type-ink);
+    font-family: var(--font-mono), monospace;
+    font-size: clamp(1.15rem, 2.3vw, 1.8rem);
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    line-height: 1.3;
   }
 
-  .rt-mark {
-    flex: none;
-    width: 1.75rem;
-    height: 2px;
-    border-radius: 2px;
-    background: linear-gradient(90deg, transparent, var(--teal));
+  .rt-caret {
+    display: inline-block;
+    width: 2px;
+    height: 1.15em;
+    margin-left: 0.1em;
+    vertical-align: -0.2em;
+    background: currentColor;
+    animation: caret-blink 1.05s steps(1) infinite;
   }
 
-  /* Clipped so each title slides out from behind the left edge. */
-  .rt-stack {
-    display: inline-grid;
-    overflow: clip;
-    padding-block: 0.12em;
+  /* Solid while letters are being typed or deleted; blinks while waiting. */
+  .rt[data-typing] .rt-caret {
+    animation: none;
   }
 
-  .rt-line {
-    grid-area: 1 / 1;
-    color: var(--teal);
-    opacity: 0;
+  /* Shown instead when JavaScript isn't running, so the title is never empty. */
+  .rt-static {
+    display: none;
   }
 
-  .rt-line[data-state="in"] {
-    animation: title-in 0.85s var(--ease-out) 0.3s both;
+  html:not([data-fx]) .rt-static {
+    display: inline;
   }
 
-  .rt-line[data-state="out"] {
-    animation: title-out 0.4s var(--ease-soft) both;
+  html:not([data-fx]) .rt-typed {
+    display: none;
   }
 
   .hero-social {
@@ -773,7 +800,7 @@
     position: absolute;
     inset: 16% 12%;
     border-radius: 50%;
-    background: radial-gradient(closest-side, rgb(56 175 169 / 0.2), rgb(56 175 169 / 0.06) 58%, transparent);
+    background: radial-gradient(closest-side, rgb(var(--wash) / 0.16), rgb(var(--wash) / 0.05) 58%, transparent);
     animation: breathe 6s ease-in-out infinite;
   }
 
@@ -889,6 +916,30 @@
 
   .sec-accent {
     color: var(--heading-accent);
+  }
+
+  /* Section titles: letters slide in from the left, one after another, when the
+     heading scrolls into view. Words stay whole so lines only break between them. */
+  .ltr-word {
+    display: inline-block;
+    white-space: nowrap;
+  }
+
+  .ltr {
+    display: inline-block;
+  }
+
+  html[data-fx] [data-reveal] .ltr {
+    transition:
+      opacity 0.45s ease calc(var(--i, 0) * 34ms + 120ms),
+      translate 0.7s var(--ease-out) calc(var(--i, 0) * 34ms + 120ms),
+      filter 0.45s ease calc(var(--i, 0) * 34ms + 120ms);
+  }
+
+  html[data-fx] [data-reveal]:not([data-in]) .ltr {
+    opacity: 0;
+    translate: -0.6em 0;
+    filter: blur(4px);
   }
 
   .sec-desc {
@@ -1665,7 +1716,7 @@
   .tech-section {
     background-color: var(--tech-bg);
     background-image:
-      radial-gradient(60% 75% at 100% 100%, rgb(56 175 169 / var(--tech-wash)), transparent 72%),
+      radial-gradient(60% 75% at 100% 100%, rgb(var(--wash) / calc(var(--tech-wash) * 0.6)), transparent 72%),
       radial-gradient(45% 60% at 0% 0%, rgb(168 112 31 / calc(var(--tech-wash) * 0.45)), transparent 70%),
       linear-gradient(var(--tech-rule) 1px, transparent 1px),
       linear-gradient(90deg, var(--tech-rule) 1px, transparent 1px);
@@ -1928,113 +1979,209 @@
   }
 
   /* ── Contact ─────────────────────────────────────────────────────────────── */
-  .contact-links {
-    display: grid;
-    gap: 0.75rem;
-    grid-template-columns: minmax(0, 1fr);
+  .contact-head {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
   }
 
-  .contact-link {
-    display: flex;
-    align-items: center;
-    gap: 0.9rem;
-    padding: 1rem;
+  .pill--amber {
+    padding: 0.5rem 1.05rem 0.5rem 0.85rem;
+    background: var(--amber-wash);
+    box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--amber) 34%, transparent);
+    color: var(--amber-ink);
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+
+  .contact-title {
+    margin-top: 1.25rem;
+  }
+
+  .contact-title-lead {
+    color: var(--teal);
+  }
+
+  /* The exact teal is too pale for a heading on the light background. */
+  [data-theme="light"] .contact-title-lead {
+    color: #1f9a93;
+  }
+
+  .contact-rule {
+    width: 3.5rem;
+    height: 3px;
+    margin-top: 1.1rem;
+    border-radius: 999px;
+    background: var(--teal);
+  }
+
+  .contact-head .sec-desc {
+    max-width: 56ch;
+    margin-top: 1.1rem;
+  }
+
+  .contact-grid {
+    --contact-fill: var(--surface-2);
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.25rem;
+    max-width: 64rem;
+    margin: 2.5rem auto 0;
+  }
+
+  [data-theme="light"] .contact-grid {
+    --contact-fill: #f4f4f3;
   }
 
   @media (min-width: 56rem) {
-    .contact-links {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-
-    .contact-link {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 1rem;
-      padding: 1.15rem;
+    .contact-grid {
+      grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+      align-items: start;
     }
   }
 
-  .contact-link-text {
-    display: block;
-    margin-top: 0.25rem;
-    color: var(--muted);
-    font-size: 0.82rem;
-    overflow-wrap: anywhere;
-    transition: color 0.25s ease;
+  .contact-card {
+    padding: clamp(1.25rem, 2.6vw, 1.6rem);
   }
 
-  .contact-link[data-hover] .contact-link-text {
-    color: var(--text);
+  .contact-card-title {
+    font-family: var(--font-display), sans-serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
   }
 
-  .contact-link-arrow {
-    position: absolute !important;
-    top: 1.15rem;
-    right: 1.15rem;
-    color: var(--amber-ink);
-    opacity: 0;
-    translate: -6px 6px;
-    transition: opacity 0.3s ease, translate 0.45s var(--ease-out);
+  .contact-list {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.75rem;
+    margin-top: 1.25rem;
   }
 
-  .contact-link[data-hover] .contact-link-arrow,
-  .contact-link:focus-visible .contact-link-arrow {
-    opacity: 1;
-    translate: 0 0;
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    padding: 0.85rem 1rem;
+    border-radius: 0.95rem;
+    background: var(--contact-fill);
+    box-shadow: inset 0 0 0 1px var(--line);
+    transition: background-color 0.25s ease, box-shadow 0.25s ease;
   }
 
-  .contact-link-icon {
+  .contact-item:hover,
+  .contact-item:focus-visible {
+    background: var(--amber-wash);
+    box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--amber) 30%, transparent);
+  }
+
+  .contact-item-icon {
     display: grid;
     place-items: center;
     flex: none;
-    width: 2.4rem;
-    height: 2.4rem;
-    border-radius: 0.8rem;
-    background: var(--accent-wash);
-    color: var(--accent-ink);
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 0.75rem;
+    background: var(--amber-wash);
+    box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--amber) 22%, transparent);
+    color: var(--amber-ink);
   }
 
-  .contact-link-icon .brand-icon {
-    color: var(--accent-ink);
+  .contact-item-icon .brand-icon {
+    color: var(--amber-ink);
   }
 
-  /* ── Contact dialog ──────────────────────────────────────────────────────── */
-  .dialog {
-    position: fixed;
-    inset: 0;
-    width: min(100% - 2rem, 32rem);
-    margin: auto;
-    padding: clamp(1.4rem, 4vw, 2.25rem);
-    border-radius: var(--radius);
-    background: var(--bg-raised);
-    box-shadow: inset 0 0 0 1px var(--line-strong), 0 40px 90px -30px var(--glow);
+  .contact-item-label {
+    display: block;
+    color: var(--muted);
+    font-size: 0.78rem;
+  }
+
+  .contact-item-value {
+    display: block;
+    margin-top: 0.1rem;
     color: var(--text);
-    opacity: 0;
-    scale: 0.96;
-    translate: 0 0.75rem;
-    transition: opacity 0.3s ease, scale 0.4s var(--ease-out), translate 0.4s var(--ease-out), display 0.3s allow-discrete, overlay 0.3s allow-discrete;
+    font-size: 0.95rem;
+    font-weight: 500;
+    overflow-wrap: anywhere;
   }
 
-  .dialog[open] {
+  .contact-item-arrow {
+    flex: none;
+    margin-left: auto;
+    color: var(--amber-ink);
+    opacity: 0;
+    translate: -4px 4px;
+    transition: opacity 0.3s ease, translate 0.45s var(--ease-out);
+  }
+
+  .contact-item:hover .contact-item-arrow,
+  .contact-item:focus-visible .contact-item-arrow {
     opacity: 1;
-    scale: 1;
     translate: 0 0;
   }
 
-  @starting-style {
-    .dialog[open] {
-      opacity: 0;
-      scale: 0.96;
-      translate: 0 0.75rem;
+  .contact-form {
+    display: grid;
+    gap: 1.1rem;
+  }
+
+  .contact-form-row {
+    display: grid;
+    gap: 1.1rem;
+  }
+
+  @media (min-width: 36rem) {
+    .contact-form-row {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
     }
   }
 
-  .dialog::backdrop {
-    background: rgb(10 20 27 / 0.62);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+  .contact-field {
+    display: grid;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    font-weight: 500;
   }
 
+  .contact-form .field {
+    background: var(--contact-fill);
+    font-weight: 400;
+  }
+
+  .contact-form .field:focus {
+    background: var(--surface-3);
+  }
+
+  .contact-form textarea.field {
+    min-height: 8.5rem;
+    resize: vertical;
+  }
+
+  .contact-form .btn {
+    margin-top: 0.25rem;
+  }
+
+  .contact-note {
+    color: var(--muted);
+    font-size: 0.88rem;
+    line-height: 1.6;
+    text-align: center;
+  }
+
+  .contact-note:empty {
+    display: none;
+  }
+
+  .contact-note a {
+    color: var(--accent-ink);
+    font-weight: 500;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  /* Form fields */
   .field {
     display: block;
     width: 100%;
@@ -2114,27 +2261,9 @@
 }
 
 /* Same motion under a second name, so hovering restarts it. */
-@keyframes title-in {
-  from {
+@keyframes caret-blink {
+  50% {
     opacity: 0;
-    transform: translateX(-100%);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes title-out {
-  from {
-    opacity: 1;
-    transform: translateX(0);
-  }
-
-  to {
-    opacity: 0;
-    transform: translateX(2rem);
   }
 }
 
@@ -2327,16 +2456,15 @@
     transform: rotateX(5deg) rotateY(-12deg);
   }
 
-  /* Both titles are shown, one under the other, since nothing cycles. */
-  .rt-stack {
-    display: grid;
-    gap: 0.15em;
+  /* Titles swap without typing, and the cursor holds still. */
+  .rt-caret {
+    animation: none !important;
   }
 
-  .rt-line {
-    grid-area: auto;
-    animation: none !important;
+  html[data-fx] [data-reveal]:not([data-in]) .ltr {
     opacity: 1;
+    translate: none;
+    filter: none;
   }
 
 }
@@ -2349,7 +2477,8 @@
     display: none;
   }
 
-  html[data-fx] [data-reveal]:not([data-in]) {
+  html[data-fx] [data-reveal]:not([data-in]),
+  html[data-fx] [data-reveal]:not([data-in]) .ltr {
     opacity: 1;
     translate: none;
     filter: none;

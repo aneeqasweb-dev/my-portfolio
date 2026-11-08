@@ -35,7 +35,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#eaeaea",
+  themeColor: "#111725",
 };
 
 // Runs before first paint: applies the saved theme and marks that JS is available,
@@ -48,7 +48,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      data-theme="light"
+      data-theme="dark"
       data-scroll-behavior="smooth"
       className={`${geistSans.variable} ${geistMono.variable} ${sora.variable} ${playfair.variable}`}
       suppressHydrationWarning

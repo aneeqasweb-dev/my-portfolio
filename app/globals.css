@@ -3,7 +3,8 @@
 @custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 
 /* ── Design tokens ─────────────────────────────────────────────────────────── */
-/* Dark: the background from the user's reference screenshot. Light: the warm off-white from their screenshots. */
+/* Dark (the default): the background from the user's reference screenshot, #111725.
+   Light: the soft cream-grey from their screenshots. */
 :root,
 [data-theme="dark"] {
   color-scheme: dark;
@@ -14,8 +15,8 @@
   --text: #d3d9dc;
   --muted: #9ea5af;
 
-  /* Built from those colours */
-  --band: #131a28;
+  /* Built from those colours. Bands match the background exactly; thin lines separate them. */
+  --band: #111725;
   --card: #1f2e3b;
   --bg-raised: var(--card);
   --surface: rgb(211 217 220 / 0.035);
@@ -56,6 +57,9 @@
   --name-c: #c48a1f;
   /* Background glows are warm (never teal), so the page has no green cast. */
   --wash: 168 112 31;
+  /* Dark mode shows the background as one flat #111725: no page glows and no grain. */
+  --page-glow: 0;
+  --grain: 0;
 }
 
 /* Small text uses deeper teal and yellow here, because the exact colours are too pale
@@ -100,6 +104,8 @@
   --name-b: #b0801a;
   --name-c: #b57c08;
   --wash: 168 112 31;
+  --page-glow: 1;
+  --grain: 0.03;
 }
 
 @theme inline {
@@ -157,8 +163,8 @@
     z-index: -1;
     pointer-events: none;
     background:
-      radial-gradient(44rem 30rem at 0% 0%, rgb(var(--wash) / 0.07), transparent 70%),
-      radial-gradient(60rem 44rem at 100% 40%, rgb(var(--wash) / 0.04), transparent 70%);
+      radial-gradient(44rem 30rem at 0% 0%, rgb(var(--wash) / calc(0.07 * var(--page-glow))), transparent 70%),
+      radial-gradient(60rem 44rem at 100% 40%, rgb(var(--wash) / calc(0.04 * var(--page-glow))), transparent 70%);
   }
 
   body::after {
@@ -167,7 +173,7 @@
     inset: 0;
     z-index: 60;
     pointer-events: none;
-    opacity: 0.03;
+    opacity: var(--grain);
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
 
@@ -587,8 +593,8 @@
     overflow: hidden;
     pointer-events: none;
     background:
-      radial-gradient(46rem 22rem at 86% 34%, rgb(var(--wash) / 0.08), transparent 70%),
-      radial-gradient(30rem 16rem at 58% 80%, rgb(var(--wash) / 0.05), transparent 70%);
+      radial-gradient(46rem 22rem at 86% 34%, rgb(var(--wash) / calc(0.08 * var(--page-glow))), transparent 70%),
+      radial-gradient(30rem 16rem at 58% 80%, rgb(var(--wash) / calc(0.05 * var(--page-glow))), transparent 70%);
   }
 
   .silk canvas {
@@ -605,7 +611,7 @@
   }
 
   .silk--footer {
-    background: radial-gradient(40rem 12rem at 50% 100%, rgb(var(--wash) / 0.1), transparent 70%);
+    background: radial-gradient(40rem 12rem at 50% 100%, rgb(var(--wash) / calc(0.1 * var(--page-glow))), transparent 70%);
   }
 
   /* ── Hero ────────────────────────────────────────────────────────────────── */
